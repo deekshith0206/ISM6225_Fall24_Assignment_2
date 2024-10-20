@@ -174,8 +174,9 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return "101010"; // Placeholder
+                // using the built-in method
+                return Convert.ToString(decimalNumber, 2);
+
             }
             catch (Exception)
             {
@@ -188,8 +189,26 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return 0; // Placeholder
+                int left = 0, right = nums.Length - 1;
+
+                while (left < right)
+                {
+                    // Find the middle index
+                    int mid = left + (right - left) / 2;
+
+                    // If the middle element is greater than the rightmost element, the minimum is in the right half
+                    if (nums[mid] > nums[right])
+                    {
+                        left = mid + 1;
+                    }
+                    // Otherwise, it's in the left half (including mid)
+                    else
+                    {
+                        right = mid;
+                    }
+                }
+
+                return nums[left];
             }
             catch (Exception)
             {
@@ -202,8 +221,22 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return false; // Placeholder
+                // Negative numbers are not palindromes
+                if (x < 0) return false;
+
+                int original = x;
+                int reversed = 0;
+
+                // Reverse the number by repeatedly extracting the last digit
+                while (x != 0)
+                {
+                    int digit = x % 10;
+                    reversed = reversed * 10 + digit;
+                    x /= 10;
+                }
+
+                return original == reversed;
+
             }
             catch (Exception)
             {
@@ -216,8 +249,22 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return 0; // Placeholder
+                // Base cases: F(0) = 0 and F(1) = 1
+                if (n <= 1) return n;
+
+                // Variables to store the two previous Fibonacci numbers
+                int a = 0, b = 1;
+
+                // Loop to calculate Fibonacci number iteratively
+                for (int i = 2; i <= n; i++)
+                {
+                    int temp = a + b;
+                    a = b;
+                    b = temp;
+                }
+
+                return b;
+
             }
             catch (Exception)
             {
