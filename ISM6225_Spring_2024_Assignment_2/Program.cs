@@ -88,26 +88,29 @@ namespace Assignment_2
         {
             try
             {
-                // Initialize a result array with the same length as nums
-                int[] result = new int[nums.Length];
 
-                // Two pointers: one for the beginning (for evens), one for the end (for odds)
-                int evenIndex = 0, oddIndex = nums.Length - 1;
+                // Create two lists to separate even and odd numbers
+                List<int> evens = new List<int>();
+                List<int> odds = new List<int>();
 
-                // Loop through the input array
-                for (int i = 0; i < nums.Length; i++)
+                foreach (int num in nums)
                 {
-                    if (nums[i] % 2 == 0) // Even numbers
+                    if (num % 2 == 0)
                     {
-                        result[evenIndex++] = nums[i];  // Place even numbers at the front
+                        evens.Add(num);  // Add even numbers to the evens list
                     }
-                    else // Odd numbers
+                    else
                     {
-                        result[oddIndex--] = nums[i];   // Place odd numbers at the back
+                        odds.Add(num);   // Add odd numbers to the odds list
                     }
                 }
 
-                return result;
+                // Combine the two lists, with evens first and then odds
+                evens.AddRange(odds);
+
+                return evens.ToArray();
+
+
             }
             catch (Exception)
             {
