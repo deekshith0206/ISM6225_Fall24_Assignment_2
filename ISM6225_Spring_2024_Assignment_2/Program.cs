@@ -88,8 +88,26 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return new int[0]; // Placeholder
+                // Initialize a result array with the same length as nums
+                int[] result = new int[nums.Length];
+
+                // Two pointers: one for the beginning (for evens), one for the end (for odds)
+                int evenIndex = 0, oddIndex = nums.Length - 1;
+
+                // Loop through the input array
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] % 2 == 0) // Even numbers
+                    {
+                        result[evenIndex++] = nums[i];  // Place even numbers at the front
+                    }
+                    else // Odd numbers
+                    {
+                        result[oddIndex--] = nums[i];   // Place odd numbers at the back
+                    }
+                }
+
+                return result;
             }
             catch (Exception)
             {
@@ -102,8 +120,23 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return new int[0]; // Placeholder
+                // Dictionary to store each number and its index in the array
+                Dictionary<int, int> map = new Dictionary<int, int>();
+
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    int complement = target - nums[i];
+
+                    // If the complement is already in the dictionary, return the indices
+                    if (map.ContainsKey(complement))
+                    {
+                        return new int[] { map[complement], i };
+                    }
+                    // Otherwise, store the current number and its index in the dictionary
+                    map[nums[i]] = i;
+                }
+                // Return an empty array if no solution is found (this shouldn't happen in valid cases)
+                return new int[0];
             }
             catch (Exception)
             {
