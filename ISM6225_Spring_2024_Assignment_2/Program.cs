@@ -62,8 +62,20 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return new List<int>(); // Placeholder
+                // Create a list to store the missing numbers
+                List<int> missingNumbers = new List<int>();
+
+                // Use a hash set to store all unique numbers in the array
+                HashSet<int> numSet = new HashSet<int>(nums);
+
+                for (int i = 1; i <= nums.Length; i++)
+                {
+                    if (!numSet.Contains(i))
+                    {
+                        missingNumbers.Add(i);  // Add missing numbers to the result list
+                    }
+                }
+                return missingNumbers;
             }
             catch (Exception)
             {
